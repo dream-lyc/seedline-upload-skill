@@ -165,7 +165,10 @@ class Connection:
 
     @contextmanager
     def lock(self):
+        new_parent = not self.profile.parent.exists()
         self.profile.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        if os.name == 'nt' and new_parent:
+            windows_acl(self.profile.parent, 'protect')
         # Reject path aliases which could otherwise create two locks for one profile.
         if self.profile.parent.resolve() != self.profile.parent:
             raise PrivateStorageError('配置目录不能经由符号链接访问')

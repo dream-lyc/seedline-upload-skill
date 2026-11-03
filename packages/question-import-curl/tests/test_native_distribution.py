@@ -148,3 +148,68 @@ def test_native_frozen_prepare_validate_run_query_and_preview_without_python_nod
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+
+
+def test_native_website_connection_saves_private_profile_and_restores_next_session(tmp_path):
+    """Exercise the actual platform bootstrap, private storage, and signed /me."""
+    import time
+    from datetime import UTC, datetime, timedelta
+
+    environment = no_language_path(tmp_path)
+    request_id = '019ab7e1-1234-7000-8000-000000000001'
+    credential_id = '019ab7e1-1234-7000-8000-000000000002'
+    user_id = '019ab7e1-1234-7000-8000-000000000003'
+    key = base64.urlsafe_b64encode(bytes(range(32))).decode().rstrip('=')
+    expires = (datetime.now(UTC)+timedelta(minutes=10)).isoformat()
+    calls = []
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *args): pass
+        def respond(self, data):
+            raw = json.dumps({'request_id': 'fixture', 'data': data}).encode()
+            self.send_response(200)
+            self.send_header('Content-Length', str(len(raw)))
+            self.end_headers()
+            self.wfile.write(raw)
+        def do_POST(self):
+            data = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+            calls.append(self.path)
+            if self.path == '/api/agent-connections':
+                assert data['client_kind'] == 'workbuddy'
+                self.respond(dict(id=request_id, user_code='ABCD-EFGH', expires_at=expires,
+                    poll_interval_seconds=5, verification_url=f'http://127.0.0.1:{self.server.server_port}/admin/connect-import?request_id={request_id}'))
+            else:
+                assert len(data['claim_secret']) == 43
+                self.respond(dict(state='delivering', credential=dict(id=credential_id,
+                    user_id=user_id, access_key='ak_fixture', secret_key=key,
+                    scopes=sorted(REQUIRED_SCOPES), expires_at=expires, authorized_expires_at=expires)))
+        def do_PUT(self):
+            self.rfile.read(int(self.headers['Content-Length']))
+            calls.append(self.path)
+            self.respond(dict(state='completed', credential_id=credential_id, expires_at=expires))
+        def do_GET(self):
+            assert self.headers['Signature']
+            self.respond(dict(user_id=user_id, credential_id=credential_id, role='admin',
+                              scopes=sorted(REQUIRED_SCOPES), environment='development'))
+
+    server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        profile = tmp_path / '教师连接' / 'profile.json'
+        common = ['--profile', profile]
+        start = json.loads(run_native(environment, *common, 'connect', 'start', '--origin',
+                                      f'http://127.0.0.1:{server.server_port}', '--client-kind', 'workbuddy'))
+        assert start['status'] == 'waiting_approval'
+        assert start['verification_url'].startswith(f'http://127.0.0.1:{server.server_port}/admin/connect-import?')
+        time.sleep(5)
+        for state in ('candidate_saved', 'acknowledged', 'activated'):
+            result = run_native(environment, *common, 'connect', 'continue')
+            assert key not in result
+            assert json.loads(result)['status'] == state
+        assert json.loads(run_native(environment, *common, 'doctor'))['identity']['user_id'] == user_id
+        assert len(calls) == 3
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)

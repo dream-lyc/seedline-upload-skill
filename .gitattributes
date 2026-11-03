@@ -5,3 +5,4 @@
 *.webp binary
 *.m4a binary
 *.ttf binary
+packages/question-import-sdk/src/question_import_sdk/assets/** -text
