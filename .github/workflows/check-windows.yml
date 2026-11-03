@@ -1,0 +1,27 @@
+name: Windows check (no publication)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: windows-2022
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Build in isolated environment
+        shell: bash
+        run: |
+          python -m venv .build-venv
+          .build-venv/Scripts/python.exe -m pip install -r build-requirements.txt
+          .build-venv/Scripts/python.exe -m pip install --no-deps ./packages/question-content-contracts
+          .build-venv/Scripts/python.exe packages/question-import-curl/scripts/build_native.py
+      - name: Check native connection and publishing gates with synthetic data
+        shell: bash
+        run: |
+          export PYTHONPATH="$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-curl/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-sdk/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-content-contracts/src")"
+          .build-venv/Scripts/python.exe -m pytest packages/question-import-curl/tests/test_native_distribution.py -q
