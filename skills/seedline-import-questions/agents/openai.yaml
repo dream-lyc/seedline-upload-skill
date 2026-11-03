@@ -1,4 +1,4 @@
 interface:
   display_name: "Seedline 试题录入助手"
   short_description: "将雅思与托福资料整理为试题，检查并预览，经你确认后发布到题库。"
-  default_prompt: "使用 $acebro-import-questions，帮助我连接题库并录入试题。"
+  default_prompt: "使用 $seedline-import-questions，帮助我连接题库并录入试题。"

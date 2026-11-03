@@ -2,12 +2,12 @@
 requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 [project]
-name = "acebro-question-content-contracts"
+name = "seedline-question-content-contracts"
 version = "1.0.0"
 requires-python = ">=3.13,<3.14"
 dependencies = ["pydantic==2.13.4", "jsonschema>=4.23,<5"]
 [project.scripts]
-acebro-question-contracts = "question_content_contracts.contracts:main"
+seedline-question-contracts = "question_content_contracts.contracts:main"
 [tool.hatch.build.targets.wheel]
 packages = ["src/question_content_contracts"]
 [tool.pytest.ini_options]

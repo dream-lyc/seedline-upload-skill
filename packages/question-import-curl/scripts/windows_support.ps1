@@ -38,7 +38,7 @@ function Assert-Origin([string]$Origin) {
     if ($uri.Port -lt 1 -or $uri.Port -gt 65535) { throw 'port' }
 }
 function New-PrivateDirectory {
-    $path = Join-Path ([IO.Path]::GetTempPath()) ('acebro-http-' + [Guid]::NewGuid().ToString('N'))
+    $path = Join-Path ([IO.Path]::GetTempPath()) ('seedline-http-' + [Guid]::NewGuid().ToString('N'))
     [void][IO.Directory]::CreateDirectory($path)
     Protect-Local $path
     return $path

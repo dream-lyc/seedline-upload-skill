@@ -22,7 +22,7 @@ import webbrowser
 from uuid import UUID
 
 from question_content_contracts.validation import load_json
-from question_import_sdk.config import canonical_origin, load_config, Profile
+from question_import_sdk.config import canonical_origin, default_home, load_config, Profile
 from question_import_sdk.workflow import REQUIRED_SCOPES
 
 from question_import_sdk.local_files import (check_private, protect_file, sync_directory, open_regular, lock_exclusive, windows_acl)
@@ -114,7 +114,7 @@ class BootstrapCurl:
         if operation != 'init' and not UUID7.fullmatch(request_id or ''):
             raise ValueError('无效连接标识')
         helper = request_helper().with_name('bootstrap.ps1' if os.name == 'nt' else 'bootstrap.sh')
-        with tempfile.TemporaryDirectory(prefix='acebro-connect-http-') as directory:
+        with tempfile.TemporaryDirectory(prefix='seedline-connect-http-') as directory:
             root = Path(directory)
             if os.name == 'nt':
                 windows_acl(root, 'protect')
@@ -566,7 +566,7 @@ class Connection:
 
 def connection_main(argv):
     parser = argparse.ArgumentParser(description='连接题库，请在网站确认')
-    parser.add_argument('--profile', type=Path, default=Path.home()/'.acebro-import/profile.json')
+    parser.add_argument('--profile', type=Path, default=default_home()/'profile.json')
     parser.add_argument('--cache', type=Path)  # Compatible global option; unused here.
     parser.add_argument('command', choices=['connect'])
     parser.add_argument('action', choices=['start', 'continue', 'status', 'cancel'])

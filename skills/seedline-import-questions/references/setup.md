@@ -18,7 +18,7 @@
 
 ## 安装与版本
 
-Skill 1.5.0 提供 Windows x64、Intel Mac 和 Apple 芯片 Mac 独立工具，首次运行自动下载对应版本并核对摘要，不需要安装 Python、Node.js、pip、虚拟环境或 SDK。在 Skill 目录执行：
+Skill 1.5.1 提供 Windows x64、Intel Mac 和 Apple 芯片 Mac 独立工具，首次运行自动下载对应版本并核对摘要，不需要安装 Python、Node.js、pip、虚拟环境或 SDK。在 Skill 目录执行：
 
 ```sh
 ./scripts/run.sh --help
@@ -28,31 +28,31 @@ Skill 1.5.0 提供 Windows x64、Intel Mac 和 Apple 芯片 Mac 独立工具，�
 ./scripts/run.sh doctor
 ```
 
-已有 `~/.acebro-import/profile.json` 且站点为生产域名时先实际验证，通过后复用配置、跳过新连接；其他站点按 onboarding 指引另行连接，不改旧凭据的地址；默认生产题库连接 `https://edu.learningiland.com`。`run.sh` 检查平台和文件摘要后启动工具。以下 `acebro-import` 均指 `/实际Skill目录/scripts/run.sh`，无需改全局 PATH。Mac 请求使用 curl、OpenSSL、jq 和 Bash；Windows 使用系统 PowerShell/.NET 和 curl.exe，凭据以 Windows 当前用户独占 ACL 保护。音视频探测需要 ffprobe。缺少这些基础工具时说明具体缺项；不要临时安装 SDK 或绕过校验。
+已有 `~/.seedline-import/profile.json` 且站点为生产域名时先实际验证，通过后复用配置、跳过新连接；其他站点按 onboarding 指引另行连接，不改旧凭据的地址；默认生产题库连接 `https://edu.learningiland.com`。`run.sh` 检查平台和文件摘要后启动工具。以下 `seedline-import` 均指 `/实际Skill目录/scripts/run.sh`，无需改全局 PATH。Mac 请求使用 curl、OpenSSL、jq 和 Bash；Windows 使用系统 PowerShell/.NET 和 curl.exe，凭据以 Windows 当前用户独占 ACL 保护。音视频探测需要 ffprobe。缺少这些基础工具时说明具体缺项；不要临时安装 SDK 或绕过校验。
 
-支持 Windows x64、macOS x64 和 macOS arm64；按主 Skill 的平台入口运行。其他平台停止并说明不支持。分发不含凭据；工具版本 1.5.0 携带契约校验器和静态预览 1.0.0。契约历史字段 `minimum_sdk_version` 表示兼容能力基线，不表示需要安装 SDK。未知规则、版本不兼容或摘要失败时保留批次并停止。
+支持 Windows x64、macOS x64 和 macOS arm64；按主 Skill 的平台入口运行。其他平台停止并说明不支持。分发不含凭据；工具版本 1.5.1 携带契约校验器和静态预览 1.0.0。契约历史字段 `minimum_sdk_version` 表示兼容能力基线，不表示需要安装 SDK。未知规则、版本不兼容或摘要失败时保留批次并停止。
 
 ## Agent 使用的命令
 
 `--profile`、`--cache` 是全局选项，放在子命令前。以下路径是示例，执行时使用本次工作目录的实际路径。
 
 ```text
-acebro-import --profile /安全目录/profile.json doctor
-acebro-import contract ielts
-acebro-import contract toefl --version 1.0.0
-acebro-import ids --count 3
-acebro-import prepare /工作目录/candidate.json --batch /工作目录/batch-001
-acebro-import validate /工作目录/batch-001
-acebro-import preview /工作目录/batch-001 --output /当前会话目录/试题预览.html
-acebro-import status /工作目录/batch-001
-acebro-import query /工作目录/batch-001
+seedline-import --profile /安全目录/profile.json doctor
+seedline-import contract ielts
+seedline-import contract toefl --version 1.0.0
+seedline-import ids --count 3
+seedline-import prepare /工作目录/candidate.json --batch /工作目录/batch-001
+seedline-import validate /工作目录/batch-001
+seedline-import preview /工作目录/batch-001 --output /当前会话目录/试题预览.html
+seedline-import status /工作目录/batch-001
+seedline-import query /工作目录/batch-001
 ```
 
 发布前必须先提供校验结果和本轮最新预览，等待教师明确确认。在用户答复前不要调用 `confirm`，也不要把以下两步和整理命令放在同一次自动执行中。确认仅针对本轮展示的内容：
 
 ```text
-acebro-import confirm /工作目录/batch-001 --preview /本轮实际preview_open_file.html
-acebro-import run /工作目录/batch-001
+seedline-import confirm /工作目录/batch-001 --preview /本轮实际preview_open_file.html
+seedline-import run /工作目录/batch-001
 ```
 
 工具核对预览和当前批次并保存本机确认；普通run在缺确认或版本已变时返回awaiting_confirmation，媒体和内容均不提交。校验成功不是确认。修改内容后重新校验、导出并请用户确认；旧快照、另一批次或损坏快照不能确认当前内容。确认后同一版本恢复保留记录，实际媒体回填不要求重复确认。
@@ -60,8 +60,8 @@ acebro-import run /工作目录/batch-001
 已持有同一版本发布确认，且用户已选择重试时才使用：
 
 ```text
-acebro-import run /工作目录/batch-001 --retry-operation content
-acebro-import run /工作目录/batch-001 --retry-operation media:原媒体占位UUID
+seedline-import run /工作目录/batch-001 --retry-operation content
+seedline-import run /工作目录/batch-001 --retry-operation media:原媒体占位UUID
 ```
 
 `--retry-operation` 可重复，值来自原账本，不重新生成。`query` 只读，不启动恢复执行。
@@ -71,7 +71,7 @@ acebro-import run /工作目录/batch-001 --retry-operation media:原媒体占�
 用户提供修正后的失败媒体时，使用：
 
 ```text
-acebro-import replace-media /工作目录/batch-001 原媒体占位UUID /工作目录/新媒体.json
+seedline-import replace-media /工作目录/batch-001 原媒体占位UUID /工作目录/新媒体.json
 ```
 
 新媒体文件为单个媒体项，字段与候选 `media` 项一致。此命令建立新的媒体身份和操作，保留旧操作历史；内容已冻结后只允许替换后置视频。结果未知的上传先查询，已成功媒体不能静默替换。替换材料后重新校验、导出最新预览并取得对新版本的明确确认，再运行原批次；只执行尚未成功的所需步骤，不重新发布已有题目。
@@ -102,3 +102,5 @@ acebro-import replace-media /工作目录/batch-001 原媒体占位UUID /工作�
 预览使用 `preview 批次 --output 当前会话目录/试题预览.html` 导出保存文件；JS/CSS/字体内嵌，材料在同目录 preview-media。命令结束即退出，关闭或重启 Agent 后仍可直接打开，无需临时端口。返回的 `preview_file` 是持续更新的固定文件，`preview_open_file` 是本轮可直接打开的完整快照；内容变化时后者路径随之变化，内容不变则复用。面向教师的链接使用本轮 `preview_open_file`，避免桌面应用复用仍显示旧内容的标签。快照仅反映导出时内容，修改题目、答案、解析、译文或媒体后必须先保存当前批次，再用同一个 `--output` 路径重新导出，核对本次改动。已打开的固定页面可由Agent刷新，不能把文件覆盖等同于窗口已刷新。旧快照保留用于核对，不删掉其材料。保留 HTML 和材料文件夹，不复制凭据、账本或短效地址。提供本轮预览后等待用户明确确认发布；页面本身保持只读，不加入发布按钮。
 
 音频预览只引用 `preview-media` 中的完整静态文件，使用普通 audio controls。预览不提供句段播放或切片；查看解析及原文依据不改变音频播放位置。该简化不改变题目 JSON 或正式录入的时间轴校验。
+
+旧版本已保存的授权或未完成连接由工具自动识别，优先使用新版配置；不移动、复制或删除已有凭据。继续原批次时始终沿用该批次原来的配置路径与站点。

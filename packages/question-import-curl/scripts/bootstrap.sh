@@ -44,7 +44,7 @@ for output in "$status_file" "$retry_file"; do
     [[ ! -L "$output" && ! -e "$output" && "$output" != "$body" ]] || fail
 done
 [[ "$status_file" != "$retry_file" ]] || fail
-private_dir=$(mktemp -d "${TMPDIR:-/tmp}/acebro-bootstrap.XXXXXXXX") || fail
+private_dir=$(mktemp -d "${TMPDIR:-/tmp}/seedline-bootstrap.XXXXXXXX") || fail
 trap 'rm -rf -- "$private_dir"' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM HUP

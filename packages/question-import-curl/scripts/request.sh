@@ -143,7 +143,7 @@ source "$script_dir/signing.sh"
 sign_hmac_sha256 || fail 'SK必须是32字节的规范无填充base64url编码，或签名计算失败'
 unset secret_key signature_base
 
-private_dir=$(mktemp -d "${TMPDIR:-/tmp}/acebro-request.XXXXXXXX") || fail '无法创建私有临时目录'
+private_dir=$(mktemp -d "${TMPDIR:-/tmp}/seedline-request.XXXXXXXX") || fail '无法创建私有临时目录'
 cleanup() { rm -rf -- "$private_dir"; }
 trap cleanup EXIT
 trap 'exit 130' INT

@@ -17,7 +17,7 @@ from question_content_contracts.examples import ielts_question, toefl_item
 from question_import_sdk.config import save_config
 from question_import_sdk.workflow import REQUIRED_SCOPES
 
-NATIVE = Path(__file__).resolve().parents[1] / "dist/acebro-local" / ("acebro-local.exe" if os.name == "nt" else "acebro-local")
+NATIVE = Path(__file__).resolve().parents[1] / "dist/seedline-local" / ("seedline-local.exe" if os.name == "nt" else "seedline-local")
 pytestmark = pytest.mark.skipif(not NATIVE.is_file(), reason="先运行开发构建生成当前平台原生工具")
 
 
@@ -47,7 +47,7 @@ def test_native_frozen_help_ids_and_version_need_no_external_language_runtime(tm
     environment = no_language_path(tmp_path)
     assert "validate" in run_native(environment, "--help")
     assert len(json.loads(run_native(environment, "ids", "--count", "2"))) == 2
-    assert run_native(environment, "--version").strip() == "1.5.0"
+    assert run_native(environment, "--version").strip() == "1.5.1"
 
 
 @pytest.mark.parametrize("exam,candidate", [
@@ -225,3 +225,4 @@ def test_native_website_connection_saves_private_profile_and_restores_next_sessi
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+

@@ -181,7 +181,7 @@ def multipart_file(batch, entry):
         or sha256_file(source) != entry["file_sha256"]
     ):
         raise ValueError("原上传源文件已修改，不能复用原幂等键")
-    boundary = "acebro-" + secrets.token_hex(24)
+    boundary = "seedline-" + secrets.token_hex(24)
     fd, name = tempfile.mkstemp(prefix=".multipart-", dir=batch.root)
     try:
         with os.fdopen(fd, "wb") as dst:

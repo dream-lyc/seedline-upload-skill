@@ -8,11 +8,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 PROJECT = ROOT/'packages/question-import-curl'
-SOURCE = ROOT/'skills/acebro-import-questions'
+SOURCE = ROOT/'skills/seedline-import-questions'
 if not SOURCE.exists():
-    SOURCE = ROOT/'.codex/skills/acebro-import-questions'
-NATIVE = PROJECT/'dist/acebro-local'
-VERSION = '1.5.0'
+    SOURCE = ROOT/'.codex/skills/seedline-import-questions'
+NATIVE = PROJECT/'dist/seedline-local'
+VERSION = '1.5.1'
 
 
 def build():
@@ -20,7 +20,7 @@ def build():
     target = manifest['platform']
     if manifest['tool_version'] != VERSION:
         raise SystemExit('本地工具版本不符，请先构建当前版本')
-    stage = PROJECT/'dist'/target/'acebro-import-questions'
+    stage = PROJECT/'dist'/target/'seedline-import-questions'
     if stage.exists():
         shutil.rmtree(stage)
     stage.mkdir(parents=True)
@@ -31,13 +31,13 @@ def build():
     (stage/'scripts').mkdir()
     for name in ('run.sh','run.ps1','request.sh','signing.sh','bootstrap.sh','request.ps1','bootstrap.ps1','windows_support.ps1'):
         shutil.copy2(PROJECT/'scripts'/name,stage/'scripts'/name)
-    shutil.copytree(NATIVE,stage/'assets'/target/'acebro-local',symlinks=True)
+    shutil.copytree(NATIVE,stage/'assets'/target/'seedline-local',symlinks=True)
     if (ROOT/'THIRD_PARTY_NOTICES').exists():
         shutil.copytree(ROOT/'THIRD_PARTY_NOTICES',stage/'assets/licenses/preview')
     if (ROOT/'LICENSE').is_file():
         shutil.copy2(ROOT/'LICENSE',stage/'LICENSE')
     (stage/'assets/distribution.json').write_text(json.dumps({
-        'skill':'acebro-import-questions','version':VERSION,'platform':target,
+        'skill':'seedline-import-questions','version':VERSION,'platform':target,
         'origin':'https://edu.learningiland.com','transport':'curl'},indent=2)+'\n')
     # Platform launcher detects an installed complete package without network access.
     sums=[]
@@ -45,16 +45,16 @@ def build():
         if path.is_file():
             sums.append(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(stage).as_posix()}\n')
     (stage/'SHA256SUMS').write_text(''.join(sums))
-    stem=f'acebro-import-questions-{VERSION}-{target}'
+    stem=f'seedline-import-questions-{VERSION}-{target}'
     if target == 'windows-x64':
         archive=PROJECT/'dist'/f'{stem}.zip'
         with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as bundle:
             for path in sorted(stage.rglob('*')):
-                if path.is_file(): bundle.write(path,Path('acebro-import-questions')/path.relative_to(stage))
+                if path.is_file(): bundle.write(path,Path('seedline-import-questions')/path.relative_to(stage))
     else:
         archive=PROJECT/'dist'/f'{stem}.tar.gz'
         with tarfile.open(archive,'w:gz') as bundle:
-            bundle.add(stage,arcname='acebro-import-questions')
+            bundle.add(stage,arcname='seedline-import-questions')
     (archive.parent/(archive.name+'.sha256')).write_text(hashlib.sha256(archive.read_bytes()).hexdigest()+'  '+archive.name+'\n')
     print(archive)
 

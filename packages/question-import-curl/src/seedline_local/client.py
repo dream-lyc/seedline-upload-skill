@@ -62,7 +62,7 @@ class CurlClient(SignedClient):
         self.last_request_id = None
         if not self.helper.is_file():
             raise ValueError("缺少Shell/curl请求工具，请重新获取完整本地工具包")
-        with tempfile.TemporaryDirectory(prefix="acebro-request-") as directory:
+        with tempfile.TemporaryDirectory(prefix="seedline-request-") as directory:
             root = Path(directory)
             status_file = root / "status"
             args = [*helper_command(self.helper), method.upper(), path, "--profile", str(self.profile_path),

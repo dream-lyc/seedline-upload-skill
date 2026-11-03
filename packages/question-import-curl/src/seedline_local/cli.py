@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 
 from question_import_sdk.cli import main as shared_main
+from question_import_sdk.config import default_home
 from .connection import ADMIN_LOGIN_PATH, DEFAULT_ORIGIN, connection_main
 
 from . import __version__
@@ -14,7 +15,7 @@ from .client import CurlClient
 
 def main():
     options = argparse.ArgumentParser(add_help=False)
-    options.add_argument('--profile', type=Path, default=Path.home()/'.acebro-import/profile.json')
+    options.add_argument('--profile', type=Path, default=default_home()/'profile.json')
     options.add_argument('--cache')
     flags, remaining = options.parse_known_args(sys.argv[1:])
     if remaining and remaining[0] == 'connect':

@@ -24,4 +24,4 @@ jobs:
         shell: bash
         run: |
           export PYTHONPATH="$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-curl/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-sdk/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-content-contracts/src")"
-          .build-venv/Scripts/python.exe -m pytest packages/question-import-curl/tests/test_native_distribution.py -q
+          .build-venv/Scripts/python.exe -m pytest packages/question-import-curl/tests/test_native_distribution.py packages/question-import-curl/tests/test_branding.py -q

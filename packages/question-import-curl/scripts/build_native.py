@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKAGE = ROOT / 'packages/question-import-curl'
-VERSION = '1.5.0'
+VERSION = '1.5.1'
 
 
 def current_platform():
@@ -64,9 +64,9 @@ def main():
     sources = [PACKAGE/'src', ROOT/'packages/question-import-sdk/src',
                ROOT/'packages/question-content-contracts/src']
     sdk = sources[1]/'question_import_sdk'
-    with tempfile.TemporaryDirectory(prefix='acebro-freeze-') as work:
+    with tempfile.TemporaryDirectory(prefix='seedline-freeze-') as work:
         command = [sys.executable, '-m', 'PyInstaller', '--clean', '--noconfirm',
-                   '--onedir', '--python-option', 'X utf8', '--name', 'acebro-local', '--distpath', str(output),
+                   '--onedir', '--python-option', 'X utf8', '--name', 'seedline-local', '--distpath', str(output),
                    '--workpath', str(Path(work)/'build'), '--specpath', work]
         for source in sources:
             command += ['--paths', str(source)]
@@ -78,7 +78,7 @@ def main():
             '--hidden-import', 'PIL.PngImagePlugin', '--hidden-import', 'PIL.JpegImagePlugin',
             '--hidden-import', 'PIL.WebPImagePlugin', str(PACKAGE/'scripts/native_entry.py')]
         subprocess.run(command, check=True, env=dict(os.environ, PYINSTALLER_CONFIG_DIR=str(Path(work)/'cache')))
-    stage = output/'acebro-local'
+    stage = output/'seedline-local'
     scripts = stage/'scripts'
     scripts.mkdir(exist_ok=True)
     for name in ('request.sh','signing.sh','bootstrap.sh','request.ps1','bootstrap.ps1','windows_support.ps1'):

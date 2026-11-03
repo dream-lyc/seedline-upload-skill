@@ -1,5 +1,5 @@
 ---
-name: acebro-import-questions
+name: seedline-import-questions
 description: 帮助教师将雅思或托福资料整理成题库试题，检查题目、答案与解析，保存可反复打开的预览，经用户确认后录入发布。支持补充资料和继续上次未完成的录入。
 ---
 
@@ -18,7 +18,7 @@ description: 帮助教师将雅思或托福资料整理成题库试题，检查�
 
 ## 运行入口（仅供 Agent）
 
-先辨认系统。Mac 使用 `bash /实际Skill路径/scripts/run.sh` 启动；ZIP 安装可能不保留执行权限，不需要修改全局环境。入口为本 Skill 的 `scripts/run.sh`；Windows 使用 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File /实际Skill路径/scripts/run.ps1`。后文所有 `scripts/run.sh` 或 `acebro-import` 示例均指当前平台入口，Windows 替换入口、其余参数保持一致。Windows 不调用 Bash，不安装 Python、Node 或 SDK。首次运行只下载本仓库固定版本的对应平台包并核对摘要，保存在当前用户的工具缓存；安装目录无需可写。平台不支持或校验失败时停止并说明问题，不绕过校验。
+先辨认系统。Mac 使用 `bash /实际Skill路径/scripts/run.sh` 启动；ZIP 安装可能不保留执行权限，不需要修改全局环境。入口为本 Skill 的 `scripts/run.sh`；Windows 使用 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File /实际Skill路径/scripts/run.ps1`。后文所有 `scripts/run.sh` 或 `seedline-import` 示例均指当前平台入口，Windows 替换入口、其余参数保持一致。Windows 不调用 Bash，不安装 Python、Node 或 SDK。首次运行只下载本仓库固定版本的对应平台包并核对摘要，保存在当前用户的工具缓存；安装目录无需可写。平台不支持或校验失败时停止并说明问题，不绕过校验。
 
 网站授权的 `connect start` 在 WorkBuddy 中传 `--client-kind workbuddy`，Codex 中传 `--client-kind codex`；这只是网站显示来源，不赋予额外权限。
 

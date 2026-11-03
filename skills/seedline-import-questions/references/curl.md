@@ -7,9 +7,9 @@ Windows 内部说明：请求由 `scripts/request.ps1` 和 `bootstrap.ps1` 执�
 所有平台请求经 curl。已有签名接口由随附 `scripts/request.sh` 发送，使用 Bash、OpenSSL、jq；没有 Python/Node.js SDK 安装步骤。该脚本固定从权限 0600 的当前用户配置读取 origin/AKSK，签名基于实际路径和正文，不能直接用裸 curl 省略鉴权。
 
 ```sh
-./scripts/request.sh GET '/api/integration/v1/me' --profile "$HOME/.acebro-import/profile.json"
-./scripts/request.sh GET '/api/integration/v1/contracts/ielts/latest' --profile "$HOME/.acebro-import/profile.json"
-./scripts/request.sh GET '/api/integration/v1/content/ielts_question?page=1&page_size=20' --profile "$HOME/.acebro-import/profile.json"
+./scripts/request.sh GET '/api/integration/v1/me' --profile "$HOME/.seedline-import/profile.json"
+./scripts/request.sh GET '/api/integration/v1/contracts/ielts/latest' --profile "$HOME/.seedline-import/profile.json"
+./scripts/request.sh GET '/api/integration/v1/content/ielts_question?page=1&page_size=20' --profile "$HOME/.seedline-import/profile.json"
 ```
 
 脚本 stdout 保留 API 原始 JSON，`--status-file /工作目录/status.txt` 可额外保存 HTTP 状态。2xx 返回 0；HTTP 失败返回 22；网络错误保留 curl 非零退出码，000 表示未取得 HTTP 响应。不要打印包含短期访问 URL 的敏感响应。

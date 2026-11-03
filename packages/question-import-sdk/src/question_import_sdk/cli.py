@@ -10,11 +10,11 @@ import httpx
 from question_content_contracts.validation import load_json
 
 from .client import ApiError, SignedClient
-from .config import load_config, save_config
+from .config import default_home, load_config, save_config
 from .ledger import uuid7
 from .workflow import ImportWorkflow
 
-DEFAULT_HOME = Path.home() / ".acebro-import"
+DEFAULT_HOME = default_home()
 
 
 def output(value):

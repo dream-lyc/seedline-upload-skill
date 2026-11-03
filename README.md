@@ -11,14 +11,14 @@
 在 Codex 对话框发送：
 
 ```text
-$skill-installer 请安装 https://github.com/dream-lyc/seedline-upload-skill/tree/main/skills/acebro-import-questions
+$skill-installer 请安装 https://github.com/dream-lyc/seedline-upload-skill/tree/main/skills/seedline-import-questions
 ```
 
-安装后在新对话中说：**“使用 acebro-import-questions，帮我录入试题。”**
+安装后在新对话中说：**“使用 seedline-import-questions，帮我录入试题。”**
 
 ### WorkBuddy
 
-1. 在 [最新版本](https://github.com/dream-lyc/seedline-upload-skill/releases/latest) 下载 `acebro-import-questions-skill.zip`。
+1. 在 [最新版本](https://github.com/dream-lyc/seedline-upload-skill/releases/latest) 下载 `seedline-import-questions-skill.zip`。
 2. 打开“技能 → 添加技能 → 上传技能”，选择这个 ZIP 文件。
 3. 启用后新建对话，说：**“使用试题录入助手，帮我录入试题。”**
 
@@ -61,3 +61,7 @@ Mac 需要系统 Bash/curl/OpenSSL/shasum 和 jq；处理音视频需要 ffprobe
 需要反馈问题时，请提供客户端、系统版本和问题描述；不要提交 AKSK、登录 Cookie 或个人试题资料。
 
 安装依据：[Codex 官方说明](https://learn.chatgpt.com/docs/build-skills)、[WorkBuddy 官方说明](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)。
+
+## 从旧版升级
+
+技能现在统一使用 `seedline-import-questions`。安装新版后停用旧名称的技能，避免重复调用；不要删除授权配置或未完成的试题资料。新版会识别原有授权，仍需核对站点和账号。已保存的预览及未完成录入可继续使用。

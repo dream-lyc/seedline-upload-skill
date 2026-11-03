@@ -10,6 +10,19 @@ from .local_files import check_private, protect_file, sync_directory
 from .signing import decode_secret
 
 
+def default_home(home=None):
+    """New installs use Seedline; reuse existing authorization without moving secrets."""
+    home = Path(home) if home is not None else Path.home()
+    preferred = home / '.seedline-import'
+    legacy = home / '.acebro-import'
+    for directory in (preferred, legacy):
+        profile = directory / 'profile.json'
+        pending = directory / '.profile.json.connection' / 'state.json'
+        if profile.exists() or profile.is_symlink() or pending.exists() or pending.is_symlink():
+            return directory
+    return preferred
+
+
 def canonical_origin(value):
     error = "服务地址须为HTTPS origin；本地开发仅支持http://127.0.0.1或http://[::1]及有效端口"
     if any(ord(char) <= 32 or ord(char) == 127 for char in value) or "\\" in value:
@@ -80,7 +93,7 @@ def save_config(path, origin, access_key, secret_key):
 def load_config(path):
     path = Path(path)
     if not path.exists():
-        raise ValueError("尚未配置凭据，请由用户在本机交互终端运行 acebro-import configure")
+        raise ValueError("尚未配置凭据，请由用户在本机交互终端运行 seedline-import configure")
     check_private(path)
     from question_content_contracts.validation import load_json
 
