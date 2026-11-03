@@ -1,0 +1,17 @@
+{
+  "version": "1.5.1",
+  "platforms": {
+    "macos-arm64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.1/seedline-import-questions-1.5.1-macos-arm64.tar.gz",
+      "sha256": "db76be42bfd857c1ed2b9e23cb99ea17df941d384602443d7c81939c2422699a"
+    },
+    "macos-x64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.1/seedline-import-questions-1.5.1-macos-x64.tar.gz",
+      "sha256": "eecfc0933d3349e41c75edbb17a775ab39faa7b6fd85cce7333f6904d8d0081f"
+    },
+    "windows-x64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.1/seedline-import-questions-1.5.1-windows-x64.zip",
+      "sha256": "6480c3fe8967ef13931f421cd4525af3d0ca10bc1ec069b51fbeb67d9f602c5f"
+    }
+  }
+}
