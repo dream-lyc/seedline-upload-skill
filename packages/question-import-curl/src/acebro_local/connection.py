@@ -122,7 +122,7 @@ class BootstrapCurl:
             private_write(body_path, body)
             status_path, retry_path = root/'status', root/'retry'
             try:
-                response = subprocess.run([*helper_command(helper), operation, origin, request_id or '-',
+                response = subprocess.run([*helper_command(helper), operation, origin, request_id or 'none',
                     str(body_path), str(status_path), str(retry_path)], capture_output=True,
                     timeout=45, check=False)
             except (subprocess.TimeoutExpired, OSError):

@@ -7,7 +7,7 @@ export LC_ALL=C
 fail() { printf '%s\n' '连接请求未发送：参数或受限文件无效。' >&2; exit 2; }
 [[ $# -eq 6 ]] || fail
 operation=$1 origin=$2 request_id=$3 body=$4 status_file=$5 retry_file=$6
-[[ "$request_id" != '-' ]] || request_id=''
+[[ "$request_id" != 'none' ]] || request_id=''
 case "$operation" in
     init) [[ -z "$request_id" ]] || fail; method=POST; path=/api/agent-connections ;;
     claims|ack|cancel)

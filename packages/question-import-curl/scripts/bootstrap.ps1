@@ -7,7 +7,7 @@ try {
     Assert-Origin $origin
     $method='POST'
     switch ($operation) {
-        'init' { if ($requestId -ne '-') { throw 'id' }; $path='/api/agent-connections' }
+        'init' { if ($requestId -ne 'none') { throw 'id' }; $path='/api/agent-connections' }
         {$_ -in 'claims','ack','cancel'} {
             if ($requestId -cnotmatch '^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') { throw 'id' }
             $suffix='claims'

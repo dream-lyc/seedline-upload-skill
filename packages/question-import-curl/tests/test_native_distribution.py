@@ -205,7 +205,7 @@ def test_native_website_connection_saves_private_profile_and_restores_next_sessi
             atomic_private_json(probe, {'client_kind': 'workbuddy', 'claim_challenge': 'a'*43})
             result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive',
                 '-ExecutionPolicy', 'Bypass', '-File', str(NATIVE.parent/'scripts/bootstrap.ps1'),
-                'init', f'http://127.0.0.1:{server.server_port}', '-', str(probe),
+                'init', f'http://127.0.0.1:{server.server_port}', 'none', str(probe),
                 str(tmp_path/'probe-status'), str(tmp_path/'probe-retry')],
                 env=environment, capture_output=True, timeout=90)
             assert result.returncode == 0, result.stderr.decode(errors='replace')
