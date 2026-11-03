@@ -1,0 +1,87 @@
+name: Build and publish
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            platform: macos-arm64
+          - os: macos-15-intel
+            platform: macos-x64
+          - os: windows-2022
+            platform: windows-x64
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Create isolated build environment
+        shell: bash
+        run: |
+          python -m venv .build-venv
+          if [ "$RUNNER_OS" = Windows ]; then
+            echo "BUILD_PYTHON=$GITHUB_WORKSPACE/.build-venv/Scripts/python.exe" >> "$GITHUB_ENV"
+          else
+            echo "BUILD_PYTHON=$GITHUB_WORKSPACE/.build-venv/bin/python" >> "$GITHUB_ENV"
+          fi
+      - name: Install build dependencies inside isolated environment
+        shell: bash
+        run: |
+          "$BUILD_PYTHON" -m pip install -r build-requirements.txt
+          "$BUILD_PYTHON" -m pip install --no-deps ./packages/question-content-contracts
+      - name: Build native tool
+        shell: bash
+        run: '"$BUILD_PYTHON" packages/question-import-curl/scripts/build_native.py'
+      - name: Native startup, validation, preview and publication confirmation checks
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then
+            export PYTHONPATH="$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-curl/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-import-sdk/src");$(cygpath -w "$GITHUB_WORKSPACE/packages/question-content-contracts/src")"
+          else
+            export PYTHONPATH="$GITHUB_WORKSPACE/packages/question-import-curl/src:$GITHUB_WORKSPACE/packages/question-import-sdk/src:$GITHUB_WORKSPACE/packages/question-content-contracts/src"
+          fi
+          "$BUILD_PYTHON" -m pytest packages/question-import-curl/tests/test_native_distribution.py -q
+      - name: Package platform release
+        shell: bash
+        run: '"$BUILD_PYTHON" packages/question-import-curl/scripts/build_distribution.py'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}
+          path: |
+            packages/question-import-curl/dist/acebro-import-questions-*.tar.gz
+            packages/question-import-curl/dist/acebro-import-questions-*.zip
+            packages/question-import-curl/dist/acebro-import-questions-*.sha256
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Finalize installer and release assets
+        run: python3 packages/question-import-curl/scripts/finalize_public_release.py
+      - name: Commit pinned download manifest and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add skills/acebro-import-questions/assets/releases.json
+          git diff --cached --quiet || git commit -m "Pin v1.5.0 platform release checksums"
+          git push origin HEAD:main
+          gh release create v1.5.0 release-assets/* --target "$(git rev-parse HEAD)" --title "1.5.0 — Windows and Mac public Skill" --notes-file RELEASE_NOTES.md

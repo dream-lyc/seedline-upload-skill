@@ -1,0 +1,272 @@
+{
+  "preview_version": "1.0.0",
+  "source_sha256": "cd55cfe172c4b745f9f96372875d861abc7a14fe4ca2d406710f3b97d6bc142e",
+  "data_endpoint": "/batch.json",
+  "media_resolution": "sdk-opaque-allowlist",
+  "shared_modules": [
+    "src/features/ielts/annotations.tsx",
+    "src/features/ielts/ielts.module.css",
+    "src/features/ielts/markdown.tsx",
+    "src/features/ielts/model.ts",
+    "src/features/ielts/question-renderer.tsx",
+    "src/features/ielts/replica.module.css",
+    "src/features/ielts/review-explanation.tsx",
+    "src/features/ielts/sentence-playback.tsx",
+    "src/features/question-import-preview/app.tsx",
+    "src/features/question-import-preview/entry.tsx",
+    "src/features/question-import-preview/index.html",
+    "src/features/question-import-preview/preview.css",
+    "src/features/question-import-preview/preview.tsx",
+    "src/features/toefl/learnland/bridge.css",
+    "src/features/toefl/learnland/complete-words-model.ts",
+    "src/features/toefl/learnland/complete-words-review.css",
+    "src/features/toefl/learnland/complete-words-review.tsx",
+    "src/features/toefl/learnland/components/ExamVisuals.tsx",
+    "src/features/toefl/learnland/components/ListeningPresentation.tsx",
+    "src/features/toefl/learnland/components/MarkdownContent.tsx",
+    "src/features/toefl/learnland/components/PassageHighlight.tsx",
+    "src/features/toefl/learnland/components/Question.tsx",
+    "src/features/toefl/learnland/components/ReadingDocument.tsx",
+    "src/features/toefl/learnland/components/ReadingPresentation.tsx",
+    "src/features/toefl/learnland/components/SpeakingOrb.jsx",
+    "src/features/toefl/learnland/components/SpeakingPrompt.tsx",
+    "src/features/toefl/learnland/components/WritingBlocks.tsx",
+    "src/features/toefl/learnland/components/WritingQuestion.tsx",
+    "src/features/toefl/learnland/components/writingMarkdown.css",
+    "src/features/toefl/learnland/exam.css",
+    "src/features/toefl/learnland/model.ts",
+    "src/features/toefl/learnland/projection.ts",
+    "src/features/toefl/learnland/readingAdapter.ts",
+    "src/features/toefl/learnland/readingDocument.css",
+    "src/features/toefl/learnland/reference.ts",
+    "src/features/toefl/learnland/reference/icons.json",
+    "src/features/toefl/learnland/reference/presentation.json",
+    "src/features/toefl/learnland/report-content.tsx",
+    "src/features/toefl/learnland/report-review.css",
+    "src/features/toefl/learnland/sectionModels.ts",
+    "src/features/toefl/learnland/sections.css",
+    "src/features/toefl/learnland/style.css",
+    "src/features/toefl/learnland/types.ts",
+    "src/features/toefl/learnland/writingModel.ts",
+    "src/features/toefl/markdown.tsx",
+    "src/features/toefl/question.tsx",
+    "src/features/toefl/review-content.tsx",
+    "src/shared/media/presentation-context.tsx",
+    "src/shared/ui/sentence-playback.module.css",
+    "src/shared/ui/sentence-playback.tsx"
+  ],
+  "outputs": [
+    "assets/index-CVz8qOyY.js",
+    "assets/index-DOz3qeDu.css"
+  ],
+  "files": [
+    {
+      "path": "assets/index-CVz8qOyY.js",
+      "sha256": "7ead5c671ae3e683d3fadf971bf5a1f6ce2c83aea0a91ec4f827a3c7b65bc715"
+    },
+    {
+      "path": "assets/index-DOz3qeDu.css",
+      "sha256": "9c3f0ede96c04cd92de49d8bc4d97466117c71442ab56958b976f450318b881d"
+    },
+    {
+      "path": "index.html",
+      "sha256": "b5a16294a17772625f27fd43ccafda6bea0ecd03ce1f84a70b85fcfe7d911c7b"
+    },
+    {
+      "path": "toefl-mock/fonts/OFL.txt",
+      "sha256": "01cd5ffb3a528c219a86e49a814c6c53bd8a69b9a3c305dd237074ba1c811af7"
+    },
+    {
+      "path": "toefl-mock/fonts/OpenSans-Bold.ttf",
+      "sha256": "75367e6da7d914eaed87883ba51b2a2b5816b5cdbb39f96ec5c81a5b032bfd5a"
+    },
+    {
+      "path": "toefl-mock/fonts/OpenSans-Regular.ttf",
+      "sha256": "47ed1cfaa7ffca04a04ab850b2938fd52c09d1b44cfa3e2980878e166b0cbd87"
+    },
+    {
+      "path": "toefl-mock/fonts/OpenSans-SemiBold.ttf",
+      "sha256": "733eb93b167e6d45de09aa768f6c0355647c2c26f5416dbc7407a08ed41e81c6"
+    },
+    {
+      "path": "toefl-mock/media/David-speaking-take-interview-intro.m4a",
+      "sha256": "eff4832a3e368fb364c606805467bb48c8ab0abd3385f8ccf7ff8a1563589cd7"
+    },
+    {
+      "path": "toefl-mock/media/VR975059.svg",
+      "sha256": "063612188ebb231fc832212eee5f55b69d4fbe81f745a86ce385ae310ee75bb2"
+    },
+    {
+      "path": "toefl-mock/media/beep-module1-v2.m4a",
+      "sha256": "c76b2d5a7cb91d507d0f197a42446677deb86be85cacca1301a2d73591d0d6f6"
+    },
+    {
+      "path": "toefl-mock/media/listening-section-overview.svg",
+      "sha256": "cf82d6ebd3a0abc5a7fa7813f2c6abde5b888262e3760ca94371f5fe62424da1"
+    },
+    {
+      "path": "toefl-mock/media/module2-orb-texture.webp",
+      "sha256": "7278b1fce98bb8be0ca7dd902434aa4a6f84bcb2d6e717b55b85bec6d0584ff5"
+    },
+    {
+      "path": "toefl-mock/media/p1_female_01.webp",
+      "sha256": "18769c54dabec0c77d8f8e368ee496c412b9519a61f68d102d14e3621dd730ae"
+    },
+    {
+      "path": "toefl-mock/media/p1_female_02.webp",
+      "sha256": "d021f9811f30f37accce5833e9a2ae4a17b81102e490a714fe2e67c9fd4e2104"
+    },
+    {
+      "path": "toefl-mock/media/p1_female_03.webp",
+      "sha256": "4fd7ffd4b6f12ca12723053556f8e7f405ea91da9309c83dc75bb7b4158299a5"
+    },
+    {
+      "path": "toefl-mock/media/p1_male_01.webp",
+      "sha256": "efb158686f408895d618f4809a558153eee074e55dd019230717b686414fbb09"
+    },
+    {
+      "path": "toefl-mock/media/p1_male_02.webp",
+      "sha256": "6799b67ac2a74121b39cc834808b0a88c26bc771289f21a0f47418a9bb3d7229"
+    },
+    {
+      "path": "toefl-mock/media/p1_male_03.webp",
+      "sha256": "d5d5730aa99295861805eb1c639fb190544107227d37c9623867eb747ff673d0"
+    },
+    {
+      "path": "toefl-mock/media/p1_male_04.webp",
+      "sha256": "327e14f68bd51ccec928c4ecaf39cd29b40dcbe609ba39af78bb256dfc1844c8"
+    },
+    {
+      "path": "toefl-mock/media/p2_pair_01.webp",
+      "sha256": "45941cc1d995843161e079d206e2375322fd32a1b42ba6c1485b26b74e4fd7e1"
+    },
+    {
+      "path": "toefl-mock/media/p2_pair_02.webp",
+      "sha256": "4c81c131179d0469c865246bb3e450dea45d9c11bfc1cef9fdab470587ce7d15"
+    },
+    {
+      "path": "toefl-mock/media/p2_pair_04.webp",
+      "sha256": "e02290109c6bc12f585b3c08785f3376a1dd305b43cba158c4b48d5e55578d71"
+    },
+    {
+      "path": "toefl-mock/media/p2_phone_pair_01.webp",
+      "sha256": "0d8681ee1ecaea703c75d9a39f63b011ef34ca429bc2c13492a9b2eafc2a8d3c"
+    },
+    {
+      "path": "toefl-mock/media/p3_female_01.webp",
+      "sha256": "bb4f9d4574eb98964398e3f5831cc01f0fc7a6338af00779a3d02851777c7417"
+    },
+    {
+      "path": "toefl-mock/media/p3_male_01.webp",
+      "sha256": "0d0aa0ac339595ae741c97e7d7000aac9ec6145d1e2be5ff51d7364e8d086100"
+    },
+    {
+      "path": "toefl-mock/media/p3_male_02.webp",
+      "sha256": "3a6f4d42636ff914947f26a4d858c07c8ad02ec1738c95d1fbc3e7a27398dcac"
+    },
+    {
+      "path": "toefl-mock/media/p4_female_03.webp",
+      "sha256": "304095545d9f5ed5a1216c2121ab59df25db85afb683c33110090ceaa820affa"
+    },
+    {
+      "path": "toefl-mock/media/p4_male_01.webp",
+      "sha256": "8931895ef802cc980b12d8ec20a361f67b74b0e6bb012225bba89735cf13351a"
+    },
+    {
+      "path": "toefl-mock/media/p4_male_02.webp",
+      "sha256": "e862748e0948c901713b0e5c0660b69d2f9131dcb1415e3fa5b5f5f77b764e8c"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q1.webp",
+      "sha256": "73a44979d40df7287f5e21f550755f91f5b7193f03d45ba868e9d95a1f2a14b3"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q2.webp",
+      "sha256": "dc733d4300119194276dfe54b3d716210e21b6f4f285c506952e1dfed6b78675"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q3.webp",
+      "sha256": "566e561b71a3407c16d7d9ce41d828da28c14a3ad020eced0144c9c5a7301d25"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q4.webp",
+      "sha256": "cd87056365c1165da8c036df7f7ca36fdef84d3777d638f2ed2df9fa49917bd3"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q5.webp",
+      "sha256": "7ac43d6e657e1d3994df0678177c6b878268db0d3a910eef22224b863062ec95"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q6.webp",
+      "sha256": "6cd74792fa5ed738413983ddaf884a8b103be73f69efec953ec2186a083bdfa2"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-q7.webp",
+      "sha256": "f6d708ccf0e10b9f3ebbdf764196ac48a19455568a079af618e105a9c5a1d5b7"
+    },
+    {
+      "path": "toefl-mock/media/piece-0121b-repeat-scenario.webp",
+      "sha256": "fc4c10edf3365cee5eadc6c3178db7024f77dac09cc097060722d04ccddfe323"
+    },
+    {
+      "path": "toefl-mock/media/speaking-listen-repeat-intro.m4a",
+      "sha256": "067334ebe3a5fd7b21cfdbd931f9ab51829a3facae2c692792391d9a71752d55"
+    },
+    {
+      "path": "toefl-mock/media/w_female_student-94.webp",
+      "sha256": "ab03506441df3c20e239e33bf498fb369ca15e566c3b72452c32cdaf8de19e08"
+    },
+    {
+      "path": "toefl-mock/media/w_male_professor-94.webp",
+      "sha256": "7f9e791a80d10c4ace2270fbdd283825130d6e1cf2a2453200d73aa43dd13ce4"
+    },
+    {
+      "path": "toefl-mock/media/w_male_student-94.webp",
+      "sha256": "90799a37339a14fbe1e7c35e69997d46c9a6578c3d461d693efa65c6bc5b2725"
+    },
+    {
+      "path": "toefl-mock/preparation/chrome.svg",
+      "sha256": "29e1a66ae7d2dea3d9c92c64a7b9a78f36cf9aecaf24c790eb5988eafdd6a156"
+    },
+    {
+      "path": "toefl-mock/preparation/hardware.svg",
+      "sha256": "d1e4657bf65cc38d7178abfc9a5761b55e51b43c0b2fb6cc5ce30ef546c01d43"
+    },
+    {
+      "path": "toefl-mock/preparation/listening_tasks_table.svg",
+      "sha256": "cf82d6ebd3a0abc5a7fa7813f2c6abde5b888262e3760ca94371f5fe62424da1"
+    },
+    {
+      "path": "toefl-mock/preparation/mic-toefl-premium.png",
+      "sha256": "3afae15a824db419ab58891a39b35cde84291242dd2588d6c3d06898e2215c7c"
+    },
+    {
+      "path": "toefl-mock/preparation/mic_example.svg",
+      "sha256": "c84cdd898d4cca60296dda6063793223ede18bdb7a7ff7f6d0f235166c07ff44"
+    },
+    {
+      "path": "toefl-mock/preparation/mic_intro.m4a",
+      "sha256": "2dbfdf82a5cc9c0847c065a576800822b78d6dda3f25e4559e11b673632f1b1f"
+    },
+    {
+      "path": "toefl-mock/preparation/reading_tasks_table.svg",
+      "sha256": "a1a6811413c69861bfb97cfefdf98adbe9139cac511f64f6b132dad5efb073af"
+    },
+    {
+      "path": "toefl-mock/preparation/speaking_tasks_table.svg",
+      "sha256": "063612188ebb231fc832212eee5f55b69d4fbe81f745a86ce385ae310ee75bb2"
+    },
+    {
+      "path": "toefl-mock/preparation/volume_intro.m4a",
+      "sha256": "bc3c9510f39f9f8f63814a336bb09693c4c08c212c0cff2e3a2abd91ac0ee9ec"
+    },
+    {
+      "path": "toefl-mock/preparation/volume_loop.m4a",
+      "sha256": "8fb09334b3f23795e591e0c6a949c987b7fc3867393fa3dfd4a61ad7b7596a29"
+    },
+    {
+      "path": "toefl-mock/preparation/writing_tasks_table.svg",
+      "sha256": "eccfe3f4b9aa709386475a5265ea774d629f11053b222b3727f0d75dc55505a6"
+    }
+  ]
+}

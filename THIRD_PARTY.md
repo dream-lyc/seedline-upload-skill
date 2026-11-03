@@ -1,0 +1,1 @@
+Preview dependencies retain their copyright notices in THIRD_PARTY_NOTICES. Native releases include their Python/runtime/library license notices in the bundled licenses directory. Open Sans OFL is included with the preview font assets.

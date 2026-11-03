@@ -1,0 +1,381 @@
+{
+  "version": "toefl-platform-2026-v2",
+  "rulesJson": {
+    "defaultVersion": "toefl-platform-2026-v2",
+    "routing": {
+      "listeningUpperMinCorrect": 14,
+      "readingUpperMinPercent": 70
+    },
+    "timers": {
+      "listening.router": 1080,
+      "listening.lower": 420,
+      "listening.upper": 660,
+      "writing.build_sentence": 360,
+      "writing.write_email": 420,
+      "writing.academic_discussion": 600,
+      "speaking.listen_repeat": 12,
+      "speaking.take_interview": 45
+    },
+    "listeningResponseSeconds": {
+      "listen_choose_response": 20,
+      "listen_conversation": 20,
+      "listen_announcement": 20,
+      "listen_academic_talk": 30
+    },
+    "readingSecondsPerItem": {
+      "complete_words": 18,
+      "read_daily_life": 45,
+      "read_academic_passage": 60
+    }
+  },
+  "scoringJson": {
+    "defaultVersion": "toefl-platform-2026-v2",
+    "scoreLabel": "平台预估分",
+    "estimateNotice": "平台按原始得分比例换算，未经 ETS 难度标定，不代表官方成绩。",
+    "conversions": {
+      "reading.lower": [
+        {
+          "minRaw": 0,
+          "maxRaw": 1,
+          "band": 1.0
+        },
+        {
+          "minRaw": 2,
+          "maxRaw": 5,
+          "band": 1.5
+        },
+        {
+          "minRaw": 6,
+          "maxRaw": 8,
+          "band": 2.0
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 12,
+          "band": 2.5
+        },
+        {
+          "minRaw": 13,
+          "maxRaw": 15,
+          "band": 3.0
+        },
+        {
+          "minRaw": 16,
+          "maxRaw": 19,
+          "band": 3.5
+        },
+        {
+          "minRaw": 20,
+          "maxRaw": 22,
+          "band": 4.0
+        },
+        {
+          "minRaw": 23,
+          "maxRaw": 26,
+          "band": 4.5
+        },
+        {
+          "minRaw": 27,
+          "maxRaw": 29,
+          "band": 5.0
+        },
+        {
+          "minRaw": 30,
+          "maxRaw": 33,
+          "band": 5.5
+        },
+        {
+          "minRaw": 34,
+          "maxRaw": 35,
+          "band": 6.0
+        }
+      ],
+      "reading.upper": [
+        {
+          "minRaw": 0,
+          "maxRaw": 1,
+          "band": 1.0
+        },
+        {
+          "minRaw": 2,
+          "maxRaw": 5,
+          "band": 1.5
+        },
+        {
+          "minRaw": 6,
+          "maxRaw": 8,
+          "band": 2.0
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 12,
+          "band": 2.5
+        },
+        {
+          "minRaw": 13,
+          "maxRaw": 15,
+          "band": 3.0
+        },
+        {
+          "minRaw": 16,
+          "maxRaw": 19,
+          "band": 3.5
+        },
+        {
+          "minRaw": 20,
+          "maxRaw": 22,
+          "band": 4.0
+        },
+        {
+          "minRaw": 23,
+          "maxRaw": 26,
+          "band": 4.5
+        },
+        {
+          "minRaw": 27,
+          "maxRaw": 29,
+          "band": 5.0
+        },
+        {
+          "minRaw": 30,
+          "maxRaw": 33,
+          "band": 5.5
+        },
+        {
+          "minRaw": 34,
+          "maxRaw": 35,
+          "band": 6.0
+        }
+      ],
+      "listening.lower": [
+        {
+          "minRaw": 0,
+          "maxRaw": 1,
+          "band": 1.0
+        },
+        {
+          "minRaw": 2,
+          "maxRaw": 5,
+          "band": 1.5
+        },
+        {
+          "minRaw": 6,
+          "maxRaw": 8,
+          "band": 2.0
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 12,
+          "band": 2.5
+        },
+        {
+          "minRaw": 13,
+          "maxRaw": 15,
+          "band": 3.0
+        },
+        {
+          "minRaw": 16,
+          "maxRaw": 19,
+          "band": 3.5
+        },
+        {
+          "minRaw": 20,
+          "maxRaw": 22,
+          "band": 4.0
+        },
+        {
+          "minRaw": 23,
+          "maxRaw": 26,
+          "band": 4.5
+        },
+        {
+          "minRaw": 27,
+          "maxRaw": 29,
+          "band": 5.0
+        },
+        {
+          "minRaw": 30,
+          "maxRaw": 33,
+          "band": 5.5
+        },
+        {
+          "minRaw": 34,
+          "maxRaw": 35,
+          "band": 6.0
+        }
+      ],
+      "listening.upper": [
+        {
+          "minRaw": 0,
+          "maxRaw": 1,
+          "band": 1.0
+        },
+        {
+          "minRaw": 2,
+          "maxRaw": 5,
+          "band": 1.5
+        },
+        {
+          "minRaw": 6,
+          "maxRaw": 8,
+          "band": 2.0
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 12,
+          "band": 2.5
+        },
+        {
+          "minRaw": 13,
+          "maxRaw": 15,
+          "band": 3.0
+        },
+        {
+          "minRaw": 16,
+          "maxRaw": 19,
+          "band": 3.5
+        },
+        {
+          "minRaw": 20,
+          "maxRaw": 22,
+          "band": 4.0
+        },
+        {
+          "minRaw": 23,
+          "maxRaw": 26,
+          "band": 4.5
+        },
+        {
+          "minRaw": 27,
+          "maxRaw": 29,
+          "band": 5.0
+        },
+        {
+          "minRaw": 30,
+          "maxRaw": 33,
+          "band": 5.5
+        },
+        {
+          "minRaw": 34,
+          "maxRaw": 35,
+          "band": 6.0
+        }
+      ],
+      "writing": [
+        {
+          "minRaw": 0,
+          "maxRaw": 0,
+          "band": 1.0
+        },
+        {
+          "minRaw": 1,
+          "maxRaw": 2,
+          "band": 1.5
+        },
+        {
+          "minRaw": 3,
+          "maxRaw": 4,
+          "band": 2.0
+        },
+        {
+          "minRaw": 5,
+          "maxRaw": 6,
+          "band": 2.5
+        },
+        {
+          "minRaw": 7,
+          "maxRaw": 8,
+          "band": 3.0
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 10,
+          "band": 3.5
+        },
+        {
+          "minRaw": 11,
+          "maxRaw": 12,
+          "band": 4.0
+        },
+        {
+          "minRaw": 13,
+          "maxRaw": 14,
+          "band": 4.5
+        },
+        {
+          "minRaw": 15,
+          "maxRaw": 16,
+          "band": 5.0
+        },
+        {
+          "minRaw": 17,
+          "maxRaw": 18,
+          "band": 5.5
+        },
+        {
+          "minRaw": 19,
+          "maxRaw": 20,
+          "band": 6.0
+        }
+      ],
+      "speaking": [
+        {
+          "minRaw": 0,
+          "maxRaw": 2,
+          "band": 1.0
+        },
+        {
+          "minRaw": 3,
+          "maxRaw": 8,
+          "band": 1.5
+        },
+        {
+          "minRaw": 9,
+          "maxRaw": 13,
+          "band": 2.0
+        },
+        {
+          "minRaw": 14,
+          "maxRaw": 19,
+          "band": 2.5
+        },
+        {
+          "minRaw": 20,
+          "maxRaw": 24,
+          "band": 3.0
+        },
+        {
+          "minRaw": 25,
+          "maxRaw": 30,
+          "band": 3.5
+        },
+        {
+          "minRaw": 31,
+          "maxRaw": 35,
+          "band": 4.0
+        },
+        {
+          "minRaw": 36,
+          "maxRaw": 41,
+          "band": 4.5
+        },
+        {
+          "minRaw": 42,
+          "maxRaw": 46,
+          "band": 5.0
+        },
+        {
+          "minRaw": 47,
+          "maxRaw": 52,
+          "band": 5.5
+        },
+        {
+          "minRaw": 53,
+          "maxRaw": 55,
+          "band": 6.0
+        }
+      ]
+    },
+    "readingMode": "ratio"
+  }
+}
