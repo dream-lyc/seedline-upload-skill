@@ -32,6 +32,10 @@ def build():
     for name in ('run.sh','run.ps1','request.sh','signing.sh','bootstrap.sh','request.ps1','bootstrap.ps1','windows_support.ps1'):
         shutil.copy2(PROJECT/'scripts'/name,stage/'scripts'/name)
     shutil.copytree(NATIVE,stage/'assets'/target/'acebro-local',symlinks=True)
+    if (ROOT/'THIRD_PARTY_NOTICES').exists():
+        shutil.copytree(ROOT/'THIRD_PARTY_NOTICES',stage/'assets/licenses/preview')
+    if (ROOT/'LICENSE').is_file():
+        shutil.copy2(ROOT/'LICENSE',stage/'LICENSE')
     (stage/'assets/distribution.json').write_text(json.dumps({
         'skill':'acebro-import-questions','version':VERSION,'platform':target,
         'origin':'https://edu.learningiland.com','transport':'curl'},indent=2)+'\n')

@@ -66,7 +66,7 @@ def main():
     sdk = sources[1]/'question_import_sdk'
     with tempfile.TemporaryDirectory(prefix='acebro-freeze-') as work:
         command = [sys.executable, '-m', 'PyInstaller', '--clean', '--noconfirm',
-                   '--onedir', '--name', 'acebro-local', '--distpath', str(output),
+                   '--onedir', '--python-option', 'X utf8', '--name', 'acebro-local', '--distpath', str(output),
                    '--workpath', str(Path(work)/'build'), '--specpath', work]
         for source in sources:
             command += ['--paths', str(source)]

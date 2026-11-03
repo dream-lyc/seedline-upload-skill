@@ -377,8 +377,8 @@ def export_preview(batch, output, *, assets_root=None, client=None):
     document = render_preview_document(view, payload)
     fd, temporary = tempfile.mkstemp(dir=output.parent, prefix=".preview-", suffix=".html")
     try:
-        with os.fdopen(fd, "w") as stream:
-            stream.write(document)
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(document.encode("utf-8"))
         os.replace(temporary, output)
     finally:
         Path(temporary).unlink(missing_ok=True)
