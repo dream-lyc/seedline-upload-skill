@@ -1,0 +1,17 @@
+{
+  "version": "1.5.0",
+  "platforms": {
+    "macos-arm64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.0/acebro-import-questions-1.5.0-macos-arm64.tar.gz",
+      "sha256": "bb64bb90cd47ddcbe01a05a2895109078abd6f6748ef88d7210b6df0853a3d03"
+    },
+    "macos-x64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.0/acebro-import-questions-1.5.0-macos-x64.tar.gz",
+      "sha256": "f4cd46e2cbeb019029df42bdf876e1bf6d7b8bb95ad6e52fdb38134187737f10"
+    },
+    "windows-x64": {
+      "url": "https://github.com/dream-lyc/seedline-upload-skill/releases/download/v1.5.0/acebro-import-questions-1.5.0-windows-x64.zip",
+      "sha256": "ca5e7a1903ff062ab9f96e230eb42229a28a313ae0b24a23ada1f02afb089570"
+    }
+  }
+}
