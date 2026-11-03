@@ -198,6 +198,18 @@ def test_native_website_connection_saves_private_profile_and_restores_next_sessi
     try:
         profile = tmp_path / '教师连接' / 'profile.json'
         common = ['--profile', profile]
+        if os.name == 'nt':
+            # Isolated bootstrap probe emits only synthetic responses and sanitized errors.
+            from question_import_sdk.config import atomic_private_json
+            probe = tmp_path / 'probe.json'
+            atomic_private_json(probe, {'client_kind': 'workbuddy', 'claim_challenge': 'a'*43})
+            result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive',
+                '-ExecutionPolicy', 'Bypass', '-File', str(NATIVE.parent/'scripts/bootstrap.ps1'),
+                'init', f'http://127.0.0.1:{server.server_port}', '-', str(probe),
+                str(tmp_path/'probe-status'), str(tmp_path/'probe-retry')],
+                env=environment, capture_output=True, timeout=90)
+            assert result.returncode == 0, result.stderr.decode(errors='replace')
+            calls.clear()
         start = json.loads(run_native(environment, *common, 'connect', 'start', '--origin',
                                       f'http://127.0.0.1:{server.server_port}', '--client-kind', 'workbuddy'))
         assert start['status'] == 'waiting_approval'

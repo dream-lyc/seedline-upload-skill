@@ -33,5 +33,5 @@ try {
     if ($result.code) { exit $result.code }
     Output-Response $privateDir
     exit 0
-} catch { [Console]::Error.WriteLine('Connection request stopped: invalid local configuration.'); exit 2 }
+} catch { [Console]::Error.WriteLine(('Connection request stopped: ' + $_.Exception.GetType().Name + ' at line ' + $_.InvocationInfo.ScriptLineNumber)); exit 2 }
 finally { if ($privateDir) { Remove-Item -LiteralPath $privateDir -Recurse -Force } }
